@@ -89,6 +89,10 @@ class TelegramLogger(NullLogger):
     def stop(self):
         self.updater.stop()
 
+    def __del__(self):
+        self.stop()
+
+
 if __name__ == '__main__':
     print 'pid: {}'.format(os.getpid())
     tlogger = TelegramLogger()
