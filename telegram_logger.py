@@ -79,8 +79,9 @@ if __name__ == '__main__':
     print 'pid: {}'.format(os.getpid())
     tlogger = TelegramLogger()
 
-    def nothing_to_do_there(logger=tlogger):
+    def nothing_to_do_there(logger=tlogger, repeat_after=15):
+        from threading import Timer
         logger.push('nothing to do there')
+        Timer(repeat_after, nothing_to_do_there).start()
 
-    from threading import Timer
-    Timer(15, nothing_to_do_there).start()
+    nothing_to_do_there()
