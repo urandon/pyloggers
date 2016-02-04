@@ -3,23 +3,11 @@
 # require https://github.com/python-telegram-bot/python-telegram-bot
 from telegram import Updater
 import os
-
-
-class NullLogger(object):
-    def __init__(self):
-        pass
-
-    def push(self, string, flush=True):
-        if flush:
-            self.flush()
-        return self
-
-    def flush(self):
-        return self
+from . import base
 
 
 # bot_url = "telegram.me/uranlogger_bot"
-class TelegramLogger(NullLogger):
+class TelegramLogger(base.NullLogger):
     def __init__(self,
                  token="72500331:AAGPGC4dI8Co3NJWHxno_HBGhLf57F1xHWA",
                  name="logger",
