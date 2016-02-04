@@ -4,6 +4,7 @@
 
 class NullLogger(object):
     def __init__(self):
+        self._is_closed = False
         pass
 
     def push(self, string, flush=True):
@@ -11,8 +12,18 @@ class NullLogger(object):
             self.flush()
         return self
 
+    def write(self, string):
+        self.push(string)
+
     def flush(self):
         return self
+
+    def close(self):
+        self._is_closed = True
+        self.flush()
+
+    def closed(self):
+        return self._is_closed
 
 
 class PrintLogger(NullLogger):
@@ -47,5 +58,9 @@ class FileLogger(NullLogger):
         self.fo.flush()
         return self
 
-    def __del__(self):
+    def close(self):
+        super.close()
         self.fo.close()
+
+    def __del__(self):
+        self.close()
