@@ -64,7 +64,7 @@ class TelegramLogger(base.NullLogger):
     def push(self, string, flush=True):
         self.log_queue.append(string)
         if self.print_dual_logging:
-            self._stdout.write(string)
+            self._stdout.write(string + '\n')
         if flush or len(self.log_queue) > self.max_local_log_size:
             self.flush()
         return self
