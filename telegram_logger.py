@@ -26,7 +26,7 @@ class TelegramLogger(base.NullLogger):
         self.dispatcher.addTelegramCommandHandler('reader', self.set_reader)
         self.dispatcher.addTelegramCommandHandler('ping', self.pong)
         self.dispatcher.addTelegramCommandHandler('flush',
-                                                  lambda s, b, u: self.flush())
+                                                  lambda b, u: self.flush())
         self.dispatcher.addTelegramCommandHandler('help', self.help)
         # I think it's a good choise for logger to launch bot in __init__
         self.launch()
