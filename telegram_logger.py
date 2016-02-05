@@ -25,6 +25,7 @@ class TelegramLogger(base.NullLogger):
         self.dispatcher = self.updater.dispatcher
         self.dispatcher.addTelegramCommandHandler('reader', self.set_reader)
         self.dispatcher.addTelegramCommandHandler('ping', self.pong)
+        self.dispatcher.addTelegramCommandHandler('flush', self.flush)
         self.dispatcher.addTelegramCommandHandler('help', self.help)
         # I think it's a good choise for logger to launch bot in __init__
         self.launch()
@@ -36,7 +37,8 @@ class TelegramLogger(base.NullLogger):
 
     def help(self, bot, update):
         msg = '/ping -- echo, check bot if it is alive\n'\
-              '/reader [name] -- set me as log reader'
+              '/reader [name] -- set me as log reader\n'\
+              '/flush flush the log queue'
         bot.sendMessage(chat_id=update.message.chat_id, text=msg)
 
     def set_reader(self, bot, update):
