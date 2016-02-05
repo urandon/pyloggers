@@ -14,6 +14,7 @@ class NullLogger(object):
 
     def write(self, string):
         self.push(string)
+        return len(string)
 
     def flush(self):
         return self
