@@ -17,7 +17,6 @@ def chatty_factorial(n):
     return n * n_1_fact
 
 
-# doesn't work properly
 @stdoutcatpure(NullLogger())
 def silent_factorial(n):
     return chatty_factorial(n)
