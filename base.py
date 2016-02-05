@@ -59,7 +59,7 @@ class FileLogger(NullLogger):
         return self
 
     def close(self):
-        super.close()
+        super(FileLogger, self).close(self)
         self.fo.close()
 
     def __del__(self):
