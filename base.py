@@ -5,7 +5,6 @@
 class NullLogger(object):
     def __init__(self):
         self._is_closed = False
-        pass
 
     def push(self, string, flush=True):
         if flush:
@@ -17,7 +16,7 @@ class NullLogger(object):
         return len(string)
 
     def flush(self):
-        pass
+        return
 
     def close(self):
         self._is_closed = True
