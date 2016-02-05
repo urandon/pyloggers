@@ -13,8 +13,11 @@ class NullLogger(object):
         return self
 
     def write(self, string):
-        self.push(string)
-        return len(string)
+        try:
+            self.push(string)
+        except:
+            return -1
+        return 0
 
     def flush(self):
         return self
