@@ -33,7 +33,7 @@ class PrintLogger(NullLogger):
         self.fo = sys.stdout
 
     def push(self, string, flush=True):
-        self.fo.write(string.strip() + "\n")
+        self.fo.write(string.strip())
         if flush:
             self.flush()
         return self

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 # require https://github.com/python-telegram-bot/python-telegram-bot
 from telegram import Updater
+import sys
 import os
 from . import base
 
@@ -18,6 +19,8 @@ class TelegramLogger(base.NullLogger):
         self.log_queue = []
         self.reader_chat_id = None
         self.print_dual_logging = print_dual_logging
+        if print_dual_logging:
+            self._stdout = sys.stdout
         self.max_local_log_size = max_local_log_size
 
         self.bot = None
@@ -61,7 +64,7 @@ class TelegramLogger(base.NullLogger):
     def push(self, string, flush=True):
         self.log_queue.append(string)
         if self.print_dual_logging:
-            print string
+            self._stdout.write(string)
         if flush or len(self.log_queue) > self.max_local_log_size:
             self.flush()
         return self
