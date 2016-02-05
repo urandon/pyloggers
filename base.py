@@ -17,7 +17,7 @@ class NullLogger(object):
         return len(string)
 
     def flush(self):
-        return self
+        pass
 
     def close(self):
         self._is_closed = True
@@ -33,14 +33,13 @@ class PrintLogger(NullLogger):
         self.fo = sys.stdout
 
     def push(self, string, flush=True):
-        self.fo.write(string.strip() + '\n')
+        self.fo.write(string.strip() + "\n")
         if flush:
             self.flush()
         return self
 
     def flush(self):
         self.fo.flush()
-        return self
 
 
 class FileLogger(NullLogger):
@@ -56,7 +55,6 @@ class FileLogger(NullLogger):
 
     def flush(self):
         self.fo.flush()
-        return self
 
     def close(self):
         super(FileLogger, self).close(self)

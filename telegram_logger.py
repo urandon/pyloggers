@@ -72,7 +72,6 @@ class TelegramLogger(base.NullLogger):
         for msg in self.log_queue:
             self.send_to_reader(msg)
         self.log_queue = []
-        return self
 
     def launch(self):
         self.updater.start_polling()

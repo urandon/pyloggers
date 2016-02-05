@@ -18,7 +18,6 @@ class StdoutCaptureLogger(base.NullLogger):
 
     def flush(self):
         self.logger.flush()
-        return self
 
     def close(self):
         self.logger.close()
