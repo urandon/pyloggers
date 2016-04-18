@@ -6,7 +6,13 @@ import sys
 import os
 from . import base
 
+try:
+    from IPython.core.display import display, HTML
+except ImportError:
+    pass
 
+BOT_URL = "https://telegram.me/uranlogger_bot"
+GREETINGS_MSG = 'join <a href="{url}">{link}</a> and subscribe by <b>/reader {name}</b>'
 # bot_url = "telegram.me/uranlogger_bot"
 class TelegramLogger(base.NullLogger):
     def __init__(self,
@@ -28,10 +34,13 @@ class TelegramLogger(base.NullLogger):
         self.dispatcher = self.updater.dispatcher
         self.dispatcher.addTelegramCommandHandler('reader', self.set_reader)
         self.dispatcher.addTelegramCommandHandler('ping', self.pong)
-        self.dispatcher.addTelegramCommandHandler('flush',
-                                                  lambda b, u: self.flush())
+        self.dispatcher.addTelegramCommandHandler('flush', lambda b, u: self.flush())
         self.dispatcher.addTelegramCommandHandler('help', self.help)
         # I think it's a good choise for logger to launch bot in __init__
+        try:
+            display(HTML(GREETINGS_MSG.format(url=BOT_URL, link=BOT_URL.rsplit('/', 1)[1], name=name)))
+        except:
+            pass
         self.launch()
 
     def pong(self, bot, update):
