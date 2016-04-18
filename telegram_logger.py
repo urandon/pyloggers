@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 # require https://github.com/python-telegram-bot/python-telegram-bot
-from telegram import Updater
+from telegram.ext import Updater
 import sys
 import os
 from . import base
