@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 # require https://github.com/python-telegram-bot/python-telegram-bot
+from __future__ import print_function
 from telegram.ext import Updater
 import sys
 import os
@@ -96,7 +97,7 @@ class TelegramLogger(base.NullLogger):
 
 
 if __name__ == '__main__':
-    print 'pid: {}'.format(os.getpid())
+    print('pid: {}'.format(os.getpid()))
     tlogger = TelegramLogger()
 
     def nothing_to_do_there(logger=tlogger, repeat_after=15):
