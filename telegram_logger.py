@@ -92,6 +92,7 @@ class TelegramLogger(base.NullLogger):
             return # TODO: add miss-log (if logs will be added)
         self.bot.sendPhoto(chat_id=self.reader_chat_id,
                            photo=img)
+        return self
         
 
     def flush(self):
