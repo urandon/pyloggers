@@ -79,6 +79,21 @@ class TelegramLogger(base.NullLogger):
             self.flush()
         return self
 
+    '''
+    :param img: URL or image file to be sent
+    images are not queued, so it can be missed if reader
+    isn't subscribed yet
+    Example:
+    push_img(open('path/to/image.png', 'rb'))
+    push_img('http://acme.corp/send_me_please.png')
+    '''
+    def push_img(self, img): 
+        if self.reader_chat_id is None or self.bot is None:
+            return # TODO: add miss-log (if logs will be added)
+        self.bot.sendPhoto(chat_id=self.reader_chat_id,
+                           photo=img)
+        
+
     def flush(self):
         if self.reader_chat_id is None or self.bot is None:
             return
